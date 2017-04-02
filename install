@@ -1,0 +1,28 @@
+#!/bin/bash -eu
+
+decorate() {
+    echo
+    echo $1
+    python -c "print '=' * ${#1}"
+}
+
+decorate "Install homebrew"
+which brew > /dev/null && echo ok || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+decorate "brew install ansible"
+which ansible > /dev/null && echo ok || brew install ansible
+decorate "brew install git"
+which git > /dev/null && echo ok || brew install git
+decorate "brew install golang"
+which go > /dev/null && echo ok || brew install golang
+if [ -z $GOPATH ]; then
+  export GOPATH=~/.go
+fi
+decorate "go get github.com/motemen/ghq"
+go get github.com/motemen/ghq
+decorate "ghq get suzuki-shunsuke/ansible-playbook-mac"
+ghq get suzuki-shunsuke/ansible-playbook-mac
+cd ~/.ghq/github.com/suzuki-shunsuke/ansible-playbook-mac
+decorate "ansible-galaxy install -r roles.yml"
+ansible-galaxy install -r roles.yml
+decorate "ansible-playbook -i localhost --ask-become-pass setup.yml"
+ansible-playbook -i localhost --ask-become-pass setup.yml
