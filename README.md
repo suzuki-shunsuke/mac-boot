@@ -10,11 +10,11 @@ Set up Mac OS X.
 ## Run
 
 ```
-$ curl https://raw.githubusercontent.com/suzuki-shunsuke/mac-boot/master/install | bash
+$ curl https://raw.githubusercontent.com/suzuki-shunsuke/mac-boot/master/install | bash -e
 ```
 
 or
 
 ```
-$ wget -qO - https://raw.githubusercontent.com/suzuki-shunsuke/mac-boot/master/install | bash
+$ wget -qO - https://raw.githubusercontent.com/suzuki-shunsuke/mac-boot/master/install | bash -e
 ```
