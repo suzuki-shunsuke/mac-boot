@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -e
 
 decorate() {
     echo
@@ -15,7 +15,8 @@ which git > /dev/null && echo ok || brew install git
 decorate "brew install golang"
 which go > /dev/null && echo ok || brew install golang
 if [ -z $GOPATH ]; then
-  export GOPATH=~/.go
+  export GOPATH=$HOME/.go
+  export PATH=$GOPATH/bin:$PATH
 fi
 decorate "go get github.com/motemen/ghq"
 go get github.com/motemen/ghq
