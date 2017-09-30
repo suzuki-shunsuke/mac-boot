@@ -14,15 +14,14 @@ decorate "brew install git"
 which git > /dev/null && echo ok || brew install git
 decorate "brew install golang"
 which go > /dev/null && echo ok || brew install golang
-if [ -z $GOPATH ]; then
-  export GOPATH=$HOME/.go
-  export PATH=$GOPATH/bin:$PATH
-fi
+export GOPATH=$HOME/repos
+export PATH=$GOPATH/bin:$PATH
+export GHQ_ROOT=$GOPATH/src
 decorate "go get github.com/motemen/ghq"
 go get github.com/motemen/ghq
 decorate "ghq get suzuki-shunsuke/ansible-playbook-mac"
 ghq get suzuki-shunsuke/ansible-playbook-mac
-cd ~/.ghq/github.com/suzuki-shunsuke/ansible-playbook-mac
+cd $GHQ_ROOT/github.com/suzuki-shunsuke/ansible-playbook-mac
 decorate "ansible-galaxy install -r roles.yml"
 ansible-galaxy install -r roles.yml
 decorate "ansible-playbook -i localhost --ask-become-pass setup.yml"
