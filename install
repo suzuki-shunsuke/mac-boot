@@ -24,5 +24,5 @@ ghq get suzuki-shunsuke/ansible-playbook-mac
 cd $GHQ_ROOT/github.com/suzuki-shunsuke/ansible-playbook-mac
 decorate "ansible-galaxy install -r roles.yml"
 ansible-galaxy install -r roles.yml
-decorate "ansible-playbook -i localhost --ask-become-pass setup.yml"
-ansible-playbook -i localhost --ask-become-pass setup.yml
+decorate "ansible-playbook -i localhost --ask-become-pass playbook.yml"
+ansible-playbook -i localhost --ask-become-pass playbook.yml
